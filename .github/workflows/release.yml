@@ -1,7 +1,7 @@
 name: On Merge with Master
 
 on:
-  pull_request:
+  push:
     branches: [master]
 
 jobs:
