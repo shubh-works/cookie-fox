@@ -1,14 +1,14 @@
-name: Build
+name: On Push
 
 on: [push]
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node: [12.x]
+        node: [12]
 
     steps:
       - name: Checkout
@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node }}
+          node-version: $
 
       - name: Cache node modules
         uses: actions/cache@v2
@@ -35,5 +35,34 @@ jobs:
       - name: Lint
         run: npm run lint
 
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node: [12]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: $
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: $-build-$-$
+          restore-keys: |
+            $-build-$-
+
+      - name: Install
+        run: npm ci
+
       - name: Test
-        run: npm run test
+        run: npm run test -- --no-watch
