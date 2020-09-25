@@ -3,19 +3,37 @@ name: Build
 on: [push]
 
 jobs:
-  release:
-    name: Release
+  build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node: [12.x]
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: $
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: $-build-$-$
+          restore-keys: |
+            $-build-$-
+
       - name: Install
         run: npm ci
+
       - name: Lint
-        run: npm lint
+        run: npm run lint
+
       - name: Test
-        run: npm test
+        run: npm run test
