@@ -45,15 +45,13 @@ jobs:
         with:
           node-version: ${{matrix.node}}
 
-      - name: Cache node modules
+      - name: check cache
         uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
         with:
           path: ~/.npm
-          key: $-build-$-$
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            $-build-$-
+            ${{ runner.os }}-node-
 
       - name: Install
         run: npm ci
@@ -78,15 +76,13 @@ jobs:
         with:
           node-version: ${{matrix.node}}
 
-      - name: Cache node modules
+      - name: check cache
         uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
         with:
           path: ~/.npm
-          key: $-build-$-$
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            $-build-$-
+            ${{ runner.os }}-node-
 
       - name: Install
         run: npm ci
