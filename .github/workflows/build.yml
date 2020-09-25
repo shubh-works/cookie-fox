@@ -126,4 +126,7 @@ jobs:
         run: npm ci
 
       - name: Test
-        run: npm run test -- --no-watch
+        run: npm run test:coverage -- --no-watch
+
+      - name: Upload coverage report to codecov.io
+        run: bash <(curl -s https://codecov.io/bash) -t ${{secrets.CODECOV_TOKEN}}
