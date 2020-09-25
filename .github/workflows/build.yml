@@ -1,6 +1,6 @@
 name: On Push
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   install:
