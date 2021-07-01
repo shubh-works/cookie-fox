@@ -20,14 +20,14 @@
     "test:coverage": "ng test --codeCoverage"
   },
   "dependencies": {
-    "@angular/animations": "~10.1.3",
-    "@angular/common": "~10.1.3",
-    "@angular/compiler": "~10.1.3",
-    "@angular/core": "~10.1.3",
-    "@angular/forms": "~10.1.3",
-    "@angular/platform-browser": "~10.1.3",
-    "@angular/platform-browser-dynamic": "~10.1.3",
-    "@angular/router": "~10.1.3",
+    "@angular/animations": "~12.1.1",
+    "@angular/common": "~12.1.1",
+    "@angular/compiler": "~12.1.1",
+    "@angular/core": "~12.1.1",
+    "@angular/forms": "~12.1.1",
+    "@angular/platform-browser": "~12.1.1",
+    "@angular/platform-browser-dynamic": "~12.1.1",
+    "@angular/router": "~12.1.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
